@@ -1,5 +1,5 @@
-# Modern.js App
-
+# Edgeless Bot Dashboard
+Built with Modern.js
 ## Setup
 
 Install the dependencies:
