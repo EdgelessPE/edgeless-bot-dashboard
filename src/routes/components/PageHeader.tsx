@@ -34,7 +34,11 @@ export function HeaderMenus() {
 export const PageHeader = () => {
   return (
     <Layout.Header className="header">
-      <img src="https://home.edgeless.top/favicon.ico" className="logo" />
+      <img
+        src="https://home.edgeless.top/favicon.ico"
+        className="logo"
+        alt="logo"
+      />
       <h3 className="title">Edgeless Bot Dashboard</h3>
       <HeaderMenus />
       <IconGithub

@@ -24,6 +24,7 @@ export function ListHeader({
           options={[
             { label: '健康度', value: 'health' },
             { label: '名称', value: 'name' },
+            { label: '构建日期', value: 'date' },
           ]}
         />
       </div>

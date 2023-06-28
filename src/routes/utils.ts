@@ -1,4 +1,5 @@
 import { ListProps } from '@arco-design/web-react';
+import dayjs from 'dayjs';
 import { useState } from 'react';
 import { PageData } from '@/routes/page.loader';
 
@@ -8,9 +9,10 @@ export function openUrl(url: string) {
 
 export type SortedItem = PageData['statusMap'][string]['recent'] & {
   title: string;
+  latestBuildDate?: string;
 };
 
-export type SortBy = 'name' | 'health';
+export type SortBy = 'name' | 'health' | 'date';
 
 export function useListProps(
   statusMap: PageData['statusMap'],
@@ -21,10 +23,16 @@ export function useListProps(
 
   // 生成数组
   let rawArray: SortedItem[] = Object.entries(statusMap).map(
-    ([title, item]) => ({
-      ...item.recent,
-      title,
-    }),
+    ([title, item]) => {
+      const recentBuild = item.recent.builds.find(
+        build => build.version === item.recent.latestVersion,
+      );
+      return {
+        ...item.recent,
+        title,
+        latestBuildDate: formatDate(recentBuild?.timestamp),
+      };
+    },
   );
 
   // 搜索
@@ -40,6 +48,8 @@ export function useListProps(
       return a.title.localeCompare(a.title);
     } else if (sortBy === 'health') {
       return a.health - b.health;
+    } else if (sortBy === 'date') {
+      return dayjs(b.latestBuildDate).diff(dayjs(a.latestBuildDate));
     }
     return 0;
   });
@@ -62,4 +72,8 @@ export function useListProps(
       style: { marginRight: '24px' },
     },
   };
+}
+
+export function formatDate(text?: string) {
+  return text ? dayjs(text).format('YYYY/MM/DD') : 'null';
 }
