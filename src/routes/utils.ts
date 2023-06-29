@@ -45,7 +45,7 @@ export function useListProps(
   // 排序
   rawArray.sort((a, b) => {
     if (sortBy === 'name') {
-      return a.title.localeCompare(a.title);
+      return a.title.localeCompare(b.title);
     } else if (sortBy === 'health') {
       return a.health - b.health;
     } else if (sortBy === 'date') {
