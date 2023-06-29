@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { List, Space, Tag } from '@arco-design/web-react';
+import { Badge, List, Space, Tag } from '@arco-design/web-react';
 import { useLoaderData } from '@modern-js/runtime/router';
 import { ViewBuilds } from '@/routes/components/ViewBuilds';
 import { ListHeader } from '@/routes/components/ListHeader';
-import { SortBy, useListProps } from '@/routes/utils';
+import { getDateColor, SortBy, useListProps } from '@/routes/utils';
 import { renderHealth } from '@/routes/renderers/health';
 import type { PageData } from '@/routes/page.loader';
 import './index.less';
@@ -39,7 +39,12 @@ const Index = () => {
                     <Tag>{item.latestVersion}</Tag>
                   </Space>
                 }
-                description={`构建日期：${item.latestBuildDate ?? '暂无构建'}`}
+                description={
+                  <Badge
+                    color={getDateColor(item.latestBuildDate)}
+                    text={`构建日期：${item.latestBuildDate ?? '暂无构建'}`}
+                  />
+                }
               />
             </List.Item>
           );
