@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { Badge, List, Space, Tag } from '@arco-design/web-react';
-import { useLoaderData } from '@modern-js/runtime/router';
+// import { useLoaderData } from '@modern-js/runtime/router';
 import { ViewBuilds } from '@/routes/components/ViewBuilds';
 import { ListHeader } from '@/routes/components/ListHeader';
 import { getDateColor, SortBy, useListProps } from '@/routes/utils';
 import { renderHealth } from '@/routes/renderers/health';
-import type { PageData } from '@/routes/page.loader';
+// import type { PageData } from '@/routes/page.loader';
 import './index.less';
 
 const Index = () => {
   const [searchText, setSearchText] = useState<string | undefined>(undefined);
   const [sortBy, setSortBy] = useState<SortBy>('health');
 
-  const pageData = useLoaderData() as PageData;
-  const listProps = useListProps(pageData.statusMap, sortBy, searchText);
+  // const pageData = useLoaderData() as PageData;
+  const listProps = useListProps(sortBy, searchText);
 
   return (
     <div className="container">
