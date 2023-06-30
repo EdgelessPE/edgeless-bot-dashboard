@@ -32,7 +32,10 @@
     "@modern-js/runtime": "2.24.0",
     "dayjs": "^1.11.8",
     "react": "~18.2.0",
-    "react-dom": "~18.2.0"
+    "react-dom": "~18.2.0",
+    "@modern-js/plugin-bff": "2.24.0",
+    "@modern-js/plugin-koa": "2.24.0",
+    "koa": "~2.14.2"
   },
   "devDependencies": {
     "@modern-js-app/eslint-config": "2.24.0",
@@ -48,6 +51,9 @@
     "lint-staged": "~13.1.0",
     "prettier": "~2.8.1",
     "rimraf": "~3.0.2",
-    "typescript": "~5.0.4"
+    "typescript": "~5.0.4",
+    "ts-node": "~10.8.1",
+    "tsconfig-paths": "~3.14.1",
+    "@types/koa": "~2.13.6"
   }
 }
