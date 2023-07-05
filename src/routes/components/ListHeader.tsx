@@ -4,22 +4,24 @@ import { PageSearch } from '@/routes/components/PageSearch';
 import './ListHeader.less';
 
 export function ListHeader({
+  search,
   onSearchChange,
   sortBy,
   onSortByChange,
 }: {
+  search?: string;
   onSearchChange?: InputProps['onChange'];
   sortBy?: SortBy;
   onSortByChange?: SelectProps['onChange'];
 }) {
   return (
     <div className="list-header">
-      <PageSearch onChange={onSearchChange} />
+      <PageSearch value={search} onChange={onSearchChange} />
       <div>
         <small style={{ marginRight: '8px' }}>排序方式：</small>
         <Select
           style={{ width: '120px' }}
-          defaultValue={sortBy}
+          value={sortBy}
           onChange={onSortByChange}
           options={[
             { label: '健康度', value: 'health' },

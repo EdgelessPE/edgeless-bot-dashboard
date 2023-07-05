@@ -2,8 +2,10 @@ import { Input, InputProps } from '@arco-design/web-react';
 import './PageSearch.less';
 
 export const PageSearch = ({
+  value,
   onChange,
 }: {
+  value?: string;
   onChange?: InputProps['onChange'];
 }) => {
   return (
@@ -12,6 +14,7 @@ export const PageSearch = ({
         searchButton
         allowClear
         placeholder="搜索任务名称"
+        value={value}
         onChange={onChange}
       />
     </div>
