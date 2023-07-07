@@ -23,10 +23,13 @@ export function useURLParams<T extends Params>(initialState: T) {
         validCount++;
         const [key, val] = pairStr.split('=');
         if (val !== '') {
-          initial[key] = Number.isInteger(Number(val)) ? Number(val) : val;
+          initial[key] = Number.isInteger(Number(val))
+            ? Number(val)
+            : decodeURIComponent(val);
         }
       }
     }
+    // TODO:存在缺省字段时自动补全
     if (validCount > 0) {
       setParams(initial as T);
     } else {
