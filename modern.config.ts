@@ -1,17 +1,19 @@
 import appTools, { defineConfig } from '@modern-js/app-tools';
+import { GenerateSW } from 'workbox-webpack-plugin';
 
 // https://modernjs.dev/en/configure/app/usage
-export default defineConfig<'rspack'>({
+export default defineConfig({
   runtime: {
     router: true,
   },
   plugins: [
     appTools({
-      bundler: 'experimental-rspack',
+      // bundler: 'experimental-rspack',
     }),
   ],
   tools: {
-    rspack: config => {
+    webpack: config => {
+      config.plugins?.push(new GenerateSW());
       return {
         ...config,
       };
