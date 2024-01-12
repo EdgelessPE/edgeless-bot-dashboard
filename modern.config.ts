@@ -10,4 +10,11 @@ export default defineConfig<'rspack'>({
       bundler: 'experimental-rspack',
     }),
   ],
+  tools: {
+    rspack: config => {
+      return {
+        ...config,
+      };
+    },
+  },
 });
