@@ -1,5 +1,5 @@
 import appTools, { defineConfig } from '@modern-js/app-tools';
-import { GenerateSW } from 'workbox-webpack-plugin';
+import { InjectManifest } from 'workbox-webpack-plugin';
 
 // https://modernjs.dev/en/configure/app/usage
 export default defineConfig({
@@ -13,7 +13,11 @@ export default defineConfig({
   ],
   tools: {
     webpack: config => {
-      config.plugins?.push(new GenerateSW());
+      config.plugins?.push(
+        new InjectManifest({
+          swSrc: 'src/sw.ts',
+        }),
+      );
       return {
         ...config,
       };

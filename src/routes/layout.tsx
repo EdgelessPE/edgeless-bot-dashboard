@@ -5,7 +5,7 @@ import { PageHeader } from '@/routes/components/PageHeader';
 // 注册 service-worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('./service-worker.js')
+    .register('./sw.js')
     .then(res => console.log(`[SW] Service worker registered : `, res));
 }
 
