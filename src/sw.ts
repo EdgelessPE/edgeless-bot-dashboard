@@ -1,4 +1,5 @@
 import { registerRoute } from 'workbox-routing';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { StaleWhileRevalidate } from 'workbox-strategies';
 
 console.log((self as any).__WB_MANIFEST);
@@ -19,5 +20,16 @@ registerRoute(
       ignoreVary: true,
       ignoreSearch: true,
     },
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      {
+        cacheKeyWillBeUsed: async ({ request }) => {
+          const url = new URL(request.url);
+          return url.pathname;
+        },
+      },
+    ],
   }),
 );
