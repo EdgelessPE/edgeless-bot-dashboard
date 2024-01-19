@@ -1,8 +1,16 @@
+/// <reference lib="webworker" />
+
 import { registerRoute } from 'workbox-routing';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
-console.log((self as any).__WB_MANIFEST);
+declare let self: ServiceWorkerGlobalScope & {
+  __WB_MANIFEST: { url: string; revision: string | null }[];
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _manifest = self.__WB_MANIFEST;
+
 registerRoute(
   ({ request }) => {
     const types: RequestDestination[] = [
@@ -10,9 +18,8 @@ registerRoute(
       'document',
       'script',
       'image',
-      '',
     ];
-    // console.log(114514, request.url, request.destination);
+    console.log(114514, request.url, request.destination);
     return types.includes(request.destination);
   },
   new StaleWhileRevalidate({
@@ -22,7 +29,7 @@ registerRoute(
     },
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [200],
+        statuses: [0, 200, 304],
       }),
       {
         cacheKeyWillBeUsed: async ({ request }) => {
@@ -30,6 +37,19 @@ registerRoute(
           return url.pathname;
         },
       },
+    ],
+  }),
+);
+
+registerRoute(
+  ({ request }) => {
+    return request.destination === '';
+  },
+  new NetworkFirst({
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200, 304],
+      }),
     ],
   }),
 );
