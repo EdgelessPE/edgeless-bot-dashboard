@@ -20,7 +20,9 @@ let cache: PageData | undefined;
 
 export default async function (): Promise<PageData> {
   if (!cache) {
-    const statusMapRes = await fetch('https://pineapple.edgeless.top/bot/data');
+    const statusMapRes = await fetch(
+      'https://cloud.edgeless.top/Bot/database.json',
+    );
     cache = {
       statusMap: await statusMapRes.json(),
     };
