@@ -54,5 +54,6 @@
     "workbox-routing": "^7.0.0",
     "workbox-strategies": "^7.0.0",
     "workbox-webpack-plugin": "^7.0.0"
-  }
+  },
+  "packageManager": "pnpm@9.15.0"
 }
