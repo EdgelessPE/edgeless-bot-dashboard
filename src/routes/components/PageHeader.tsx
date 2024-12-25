@@ -35,7 +35,7 @@ export const PageHeader = () => {
   return (
     <Layout.Header className="header">
       <img
-        src="https://pineapple.edgeless.top/picbed/wiki/bot/logo.ico"
+        src="https://cloud.edgeless.top/picbed/bot/logo.ico"
         className="logo"
         alt="logo"
       />

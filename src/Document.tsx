@@ -8,7 +8,7 @@ export default function Document(): React.ReactElement {
         <title>Edgeless Bot Dashboard</title>
         <link
           rel="icon"
-          href="https://pineapple.edgeless.top/picbed/wiki/bot/logo.ico"
+          href="https://cloud.edgeless.top/picbed/bot/logo.ico"
           type="image/x-icon"
         />
       </Head>
